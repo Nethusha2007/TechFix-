@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.techfix.app.R;
 
-/** Second onboarding page. */
 public class Onboarding2Activity extends AppCompatActivity {
 
     @Override
