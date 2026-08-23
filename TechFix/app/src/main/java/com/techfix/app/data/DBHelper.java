@@ -13,16 +13,10 @@ import com.techfix.app.model.User;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * SQLite persistence for TechFix: user accounts + repair appointments.
- * Seeds a demo customer, an admin account, and a few sample appointments on first run.
- */
 public class DBHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "techfix.db";
     private static final int DB_VERSION = 4;
-
-    // users table
     private static final String T_USERS = "users";
     private static final String U_ID = "id";
     private static final String U_NAME = "full_name";
@@ -31,8 +25,6 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String U_PASSWORD = "password";
     private static final String U_ADDRESS = "address";
     private static final String U_IS_ADMIN = "is_admin";
-
-    // appointments table
     private static final String T_APPTS = "appointments";
     private static final String A_ID = "id";
     private static final String A_REF = "ref_no";
@@ -46,10 +38,8 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String A_TECH = "technician_name";
     private static final String A_DESC = "description";
     private static final String A_TRACK = "track_step";
-    private static final String A_USER_ID = "user_id";   // owner of this appointment
-    private static final String A_IMAGES = "images";      // newline-separated local file paths
-
-    // payments table (one row per transaction, owned by a user)
+    private static final String A_USER_ID = "user_id";  
+    private static final String A_IMAGES = "images";      
     private static final String T_PAYMENTS = "payments";
     private static final String P_ID = "id";
     private static final String P_USER_ID = "user_id";
@@ -58,8 +48,6 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String P_AMOUNT = "amount";
     private static final String P_DATE = "date";
     private static final String P_STATUS = "status";
-
-    // Demo credentials (shown on the login screen for convenience)
     public static final String DEMO_EMAIL = "john@techfix.com";
     public static final String DEMO_PASSWORD = "123456";
     public static final String ADMIN_EMAIL = "admin@techfix.com";
@@ -104,10 +92,6 @@ public class DBHelper extends SQLiteOpenHelper {
                 P_AMOUNT + " TEXT, " +
                 P_DATE + " TEXT, " +
                 P_STATUS + " TEXT)");
-
-        // Fresh install: only the demo customer + admin accounts exist. There are NO
-        // sample appointments or payments, so every admin figure — income, repair counts,
-        // reports — starts at zero and grows only from real customer activity.
         seedUsers(db);
     }
 
@@ -141,9 +125,6 @@ public class DBHelper extends SQLiteOpenHelper {
         return demoId;
     }
 
-    // ---------------------------------------------------------------- users
-
-    /** Registers a new customer. Returns the new row id, or -1 if the email already exists. */
     public long registerUser(String fullName, String email, String phone,
                              String password, String address) {
         if (emailExists(email)) return -1;
@@ -167,7 +148,6 @@ public class DBHelper extends SQLiteOpenHelper {
         return exists;
     }
 
-    /** Validates credentials. Returns the matching User (with isAdmin set), or null. */
     public User login(String email, String password) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.query(T_USERS, null, U_EMAIL + "=? AND " + U_PASSWORD + "=?",
@@ -192,7 +172,6 @@ public class DBHelper extends SQLiteOpenHelper {
         return user;
     }
 
-    /** Updates the editable profile fields for a user. */
     public boolean updateUser(int id, String fullName, String email, String phone, String address) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues v = new ContentValues();
@@ -204,7 +183,6 @@ public class DBHelper extends SQLiteOpenHelper {
         return rows > 0;
     }
 
-    /** Updates the password for the account with the given email. Used by "Forgot Password". */
     public boolean updatePassword(String email, String newPassword) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues v = new ContentValues();
@@ -224,10 +202,7 @@ public class DBHelper extends SQLiteOpenHelper {
         u.isAdmin = c.getInt(c.getColumnIndexOrThrow(U_IS_ADMIN)) == 1;
         return u;
     }
-
-    // --------------------------------------------------------- appointments
-
-    /** Inserts a new appointment (used at the end of the Book Repair flow). Returns row id. */
+    
     public long insertAppointment(Appointment a) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues v = new ContentValues();
@@ -247,8 +222,6 @@ public class DBHelper extends SQLiteOpenHelper {
         return db.insert(T_APPTS, null, v);
     }
 
-    // ---- global queries (used by the admin portal, which sees every booking) ----
-
     public List<Appointment> getAllAppointments() {
         return query(null, null);
     }
@@ -257,12 +230,9 @@ public class DBHelper extends SQLiteOpenHelper {
         return query(A_STATUS + "=?", new String[]{status});
     }
 
-    /** Active = anything not yet completed/collected. */
     public List<Appointment> getActiveAppointments() {
         return query(A_STATUS + "!=?", new String[]{"Completed"});
     }
-
-    // ---- per-user queries (used by the customer app so each account is isolated) ----
 
     public List<Appointment> getAppointmentsByUser(int userId) {
         return query(A_USER_ID + "=?", new String[]{String.valueOf(userId)});
@@ -340,9 +310,6 @@ public class DBHelper extends SQLiteOpenHelper {
         return count;
     }
 
-    // -------------------------------------------------------------- payments
-
-    /** Records a payment for a specific account. Returns the new row id. */
     public long insertPayment(int userId, String refNo, String service,
                               String amount, String date, String status) {
         SQLiteDatabase db = getWritableDatabase();
@@ -356,7 +323,6 @@ public class DBHelper extends SQLiteOpenHelper {
         return db.insert(T_PAYMENTS, null, v);
     }
 
-    /** All payments owned by one account, newest first (so each login sees only its own). */
     public List<Payment> getPaymentsByUser(int userId) {
         List<Payment> list = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
@@ -375,7 +341,6 @@ public class DBHelper extends SQLiteOpenHelper {
         return list;
     }
 
-    /** Every payment across all accounts, newest first — used to compute real admin income. */
     public List<Payment> getAllPayments() {
         List<Payment> list = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
