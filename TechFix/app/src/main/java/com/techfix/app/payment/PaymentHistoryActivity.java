@@ -18,7 +18,6 @@ import com.techfix.app.util.Money;
 
 import java.util.List;
 
-/** Lists the signed-in customer's own payments with a paid total. Each account is isolated. */
 public class PaymentHistoryActivity extends AppCompatActivity {
 
     private DBHelper db;
@@ -46,7 +45,6 @@ public class PaymentHistoryActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        // A payment just made in the flow should appear when we come back to this screen.
         bindPayments();
     }
 
