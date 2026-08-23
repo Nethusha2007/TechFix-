@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.techfix.app.R;
 
-/** Final onboarding page — leads into the login screen. */
 public class Onboarding3Activity extends AppCompatActivity {
 
     @Override
