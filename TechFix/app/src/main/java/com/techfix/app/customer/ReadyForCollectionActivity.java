@@ -19,7 +19,6 @@ import com.techfix.app.util.MapUtil;
 
 import java.util.List;
 
-/** Celebration / pickup screen shown when a repair is ready for collection. */
 public class ReadyForCollectionActivity extends AppCompatActivity {
 
     private DBHelper db;
