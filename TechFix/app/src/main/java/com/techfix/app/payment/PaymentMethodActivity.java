@@ -18,7 +18,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-/** Lets the customer pick how they want to pay, then confirms the payment. */
 public class PaymentMethodActivity extends AppCompatActivity {
 
     private final int[] rowIds = {R.id.rowCard, R.id.rowCash, R.id.rowBank, R.id.rowWallet};
@@ -60,8 +59,7 @@ public class PaymentMethodActivity extends AppCompatActivity {
         TextView btnPay = findViewById(R.id.btnPay);
         btnPay.setText("Pay " + amount);
         btnPay.setOnClickListener(v -> {
-            // Persist this transaction against the logged-in account so each user's
-            // payment history stays private to them.
+          
             recordPayment();
 
             Intent i = new Intent(this, PaymentSuccessActivity.class);
@@ -77,10 +75,9 @@ public class PaymentMethodActivity extends AppCompatActivity {
         });
     }
 
-    /** Saves the completed payment for the current user. */
     private void recordPayment() {
         int userId = session.getUserId();
-        if (userId <= 0) return;   // not signed in — nothing to attribute the payment to
+        if (userId <= 0) return;  
         String svc = (service == null || service.isEmpty()) ? "Repair Payment" : service;
         String today = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(new Date());
         db.insertPayment(userId, ref, svc, amount, today, "Paid");
