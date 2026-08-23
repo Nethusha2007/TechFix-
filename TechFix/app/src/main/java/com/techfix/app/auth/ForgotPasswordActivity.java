@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.techfix.app.R;
 import com.techfix.app.data.DBHelper;
 
-/** Simple password-reset flow backed by SQLite (demo — no email verification). */
 public class ForgotPasswordActivity extends AppCompatActivity {
 
     private EditText etEmail, etPassword, etConfirmPassword;
