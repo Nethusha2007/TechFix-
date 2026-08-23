@@ -16,7 +16,6 @@ import com.techfix.app.model.TrackStep;
 
 import java.util.List;
 
-/** Renders the vertical repair-tracking timeline (done / current / pending nodes). */
 public class TrackStepAdapter extends RecyclerView.Adapter<TrackStepAdapter.VH> {
 
     private final List<TrackStep> items;
@@ -68,7 +67,6 @@ public class TrackStepAdapter extends RecyclerView.Adapter<TrackStepAdapter.VH> 
                 break;
         }
 
-        // Connector lines: colored up to and including the current node.
         h.lineTop.setVisibility(position == 0 ? View.INVISIBLE : View.VISIBLE);
         h.lineBottom.setVisibility(position == items.size() - 1 ? View.INVISIBLE : View.VISIBLE);
         h.lineTop.setBackgroundColor(s.state == TrackStep.PENDING ? divider : success);
