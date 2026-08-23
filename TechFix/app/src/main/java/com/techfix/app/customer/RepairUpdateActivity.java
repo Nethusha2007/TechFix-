@@ -17,7 +17,6 @@ import com.techfix.app.model.TrackStep;
 
 import java.util.List;
 
-/** Shows a reverse-chronological feed of technician updates for one repair. */
 public class RepairUpdateActivity extends AppCompatActivity {
 
     private DBHelper db;
@@ -57,7 +56,6 @@ public class RepairUpdateActivity extends AppCompatActivity {
         container.removeAllViews();
         LayoutInflater inflater = LayoutInflater.from(this);
 
-        // Newest first: iterate reached steps in reverse.
         boolean any = false;
         for (int i = steps.size() - 1; i >= 0; i--) {
             TrackStep s = steps.get(i);
