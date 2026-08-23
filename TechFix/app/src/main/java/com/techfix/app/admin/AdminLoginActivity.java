@@ -36,8 +36,6 @@ public class AdminLoginActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         btnTogglePassword = findViewById(R.id.btnTogglePassword);
-
-        // Prefill admin credentials for the coursework demo.
         etEmail.setText(DBHelper.ADMIN_EMAIL);
         etPassword.setText(DBHelper.ADMIN_PASSWORD);
 
