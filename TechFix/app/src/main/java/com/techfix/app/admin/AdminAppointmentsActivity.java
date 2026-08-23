@@ -17,7 +17,6 @@ import com.techfix.app.util.AdminNavHelper;
 
 import java.util.List;
 
-/** Admin appointment list with All / Pending / In Progress / Completed filters. */
 public class AdminAppointmentsActivity extends AppCompatActivity {
 
     private DBHelper db;

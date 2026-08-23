@@ -28,10 +28,6 @@ import com.techfix.app.view.PieChartView;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Admin home. Shows live counts pulled from SQLite, a repairs-by-status pie chart
- * (drawn programmatically, no external chart library), and the most recent bookings.
- */
 public class AdminDashboardActivity extends AppCompatActivity {
 
     private DBHelper db;
@@ -60,7 +56,6 @@ public class AdminDashboardActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        // Counts, the chart and the recent list can all change after edits elsewhere.
         bindStats();
         buildChart();
         bindRecent();
@@ -70,10 +65,6 @@ public class AdminDashboardActivity extends AppCompatActivity {
         int total = db.countAll();
         int inProgress = db.countByStatus("In Progress");
         int pending = db.countByStatus("Pending");
-
-        // Real income: sum of every payment a customer has actually paid. The moment a
-        // customer completes a payment (PaymentMethodActivity inserts a "Paid" row), it
-        // shows up here on the next dashboard load.
         long revenue = 0;
         for (Payment p : db.getAllPayments()) {
             if ("Paid".equalsIgnoreCase(p.status)) revenue += Money.parse(p.amount);
@@ -88,8 +79,6 @@ public class AdminDashboardActivity extends AppCompatActivity {
         setStat(R.id.statRevenue, R.drawable.ic_revenue, R.drawable.bg_circle_success_light,
                 R.color.success, Money.format(revenue), "Revenue");
     }
-
-    /** Fills one stat-card include (scoped lookups since they share child ids). */
     private void setStat(int includeId, int iconRes, int bgRes, int tintColor,
                          String value, String label) {
         View card = findViewById(includeId);
@@ -104,8 +93,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
         tvValue.setText(value);
         tvLabel.setText(label);
     }
-
-    /** Draws a repairs-by-status donut chart into chartContainer using live DB counts. */
+    
     private void buildChart() {
         LinearLayout container = findViewById(R.id.chartContainer);
         container.removeAllViews();
@@ -118,7 +106,6 @@ public class AdminDashboardActivity extends AppCompatActivity {
 
         ((TextView) findViewById(R.id.tvChartTotal)).setText(String.valueOf(total));
 
-        // Collect only the statuses that actually have repairs, so the pie + legend stay tidy.
         List<Float> values = new ArrayList<>();
         List<Integer> colors = new ArrayList<>();
         List<String> labels = new ArrayList<>();
@@ -134,7 +121,6 @@ public class AdminDashboardActivity extends AppCompatActivity {
         pie.setCenterText(String.valueOf(total), total == 1 ? "Repair" : "Repairs");
 
         if (values.isEmpty()) {
-            // Nothing booked yet — show a single muted ring.
             pie.setData(new float[]{1f}, new int[]{getResources().getColor(R.color.divider)});
         } else {
             float[] v = new float[values.size()];
@@ -164,7 +150,6 @@ public class AdminDashboardActivity extends AppCompatActivity {
         container.addView(legend);
     }
 
-    /** Adds a status to the pie/legend collections only when it has at least one repair. */
     private void addSlice(List<Float> values, List<Integer> colors, List<String> labels,
                           List<Integer> counts, int count, int colorRes, String label) {
         if (count <= 0) return;
@@ -173,8 +158,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
         labels.add(label);
         counts.add(count);
     }
-
-    /** Builds one legend row: a coloured dot, the status label, and its count. */
+    
     private void addLegendRow(LinearLayout parent, int color, String label, int count) {
         LinearLayout row = new LinearLayout(this);
         row.setOrientation(LinearLayout.HORIZONTAL);
@@ -217,7 +201,6 @@ public class AdminDashboardActivity extends AppCompatActivity {
 
     private void bindRecent() {
         List<Appointment> all = db.getAllAppointments();
-        // Show the four most recent (query already orders newest first).
         List<Appointment> recent = all.subList(0, Math.min(4, all.size()));
 
         RecyclerView rv = findViewById(R.id.rvRecent);

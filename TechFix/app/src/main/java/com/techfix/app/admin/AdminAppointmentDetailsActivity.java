@@ -19,13 +19,8 @@ import com.techfix.app.util.StatusUtil;
 
 import java.util.List;
 
-/**
- * Admin view of a single booking. Lets staff assign a technician and advance the
- * repair status, both persisted to SQLite.
- */
 public class AdminAppointmentDetailsActivity extends AppCompatActivity {
 
-    // Status options offered to the admin, mapped to a tracking step index (see SampleData.STEP_TITLES).
     private static final String[] STATUS_OPTIONS = {
             "Pending", "In Progress", "Ready for Collection", "Completed"
     };
