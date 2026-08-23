@@ -21,7 +21,6 @@ import com.techfix.app.util.StatusUtil;
 
 import java.util.List;
 
-/** Full read-only detail view for a single appointment / repair. */
 public class RepairDetailsActivity extends AppCompatActivity {
 
     private DBHelper db;
@@ -95,7 +94,6 @@ public class RepairDetailsActivity extends AppCompatActivity {
         findViewById(R.id.btnPay).setVisibility(payable ? View.VISIBLE : View.GONE);
     }
 
-    /** Shows the customer's own uploaded photos as a horizontal thumbnail strip. */
     private void bindPhotos(String joined) {
         LinearLayout container = findViewById(R.id.photosContainer);
         View strip = findViewById(R.id.photosStrip);
