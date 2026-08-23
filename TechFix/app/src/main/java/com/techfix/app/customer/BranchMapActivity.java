@@ -14,7 +14,6 @@ import com.techfix.app.data.SampleData;
 import com.techfix.app.model.Branch;
 import com.techfix.app.util.MapUtil;
 
-/** Stylized "nearby branches" map with a selected-branch detail card. */
 public class BranchMapActivity extends AppCompatActivity {
 
     private String phone = "+94 11 234 5678";
@@ -39,7 +38,6 @@ public class BranchMapActivity extends AppCompatActivity {
         String distance = getIntent().getStringExtra("branch_distance");
         if (distance == null) distance = first.distance;
 
-        // Resolve the selected branch to pick up its phone + coordinates.
         Branch selected = first;
         for (Branch b : SampleData.branches()) {
             if (b.name.equals(name)) {
