@@ -18,7 +18,6 @@ import com.techfix.app.util.MapUtil;
 
 import java.util.List;
 
-/** Binds branch cards with call / directions actions. */
 public class BranchAdapter extends RecyclerView.Adapter<BranchAdapter.VH> {
 
     private final List<Branch> items;
