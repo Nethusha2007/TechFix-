@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Location is used to find the nearest branch (optional, gracefully degrades). -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.TechFix"
+        tools:targetApi="31">
+
+        <!-- ============ AUTH ============ -->
+        <activity
+            android:name=".auth.SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.TechFix.Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".auth.Onboarding1Activity" android:exported="false" />
+        <activity android:name=".auth.Onboarding2Activity" android:exported="false" />
+        <activity android:name=".auth.Onboarding3Activity" android:exported="false" />
+        <activity android:name=".auth.LoginActivity" android:exported="false" />
+        <activity android:name=".auth.RegisterActivity" android:exported="false" />
+        <activity android:name=".auth.ForgotPasswordActivity" android:exported="false" />
+
+        <!-- ============ CUSTOMER ============ -->
+        <activity android:name=".customer.HomeActivity" android:exported="false" />
+        <activity android:name=".customer.BranchesActivity" android:exported="false" />
+        <activity android:name=".customer.BranchMapActivity" android:exported="false" />
+        <activity android:name=".customer.ServicesActivity" android:exported="false" />
+        <activity android:name=".customer.DeviceCategoriesActivity" android:exported="false" />
+        <activity android:name=".customer.ProfileActivity" android:exported="false" />
+        <activity android:name=".customer.AppointmentsActivity" android:exported="false" />
+        <activity android:name=".customer.RepairTrackingActivity" android:exported="false" />
+        <activity android:name=".customer.RepairDetailsActivity" android:exported="false" />
+        <activity android:name=".customer.RepairUpdateActivity" android:exported="false" />
+        <activity android:name=".customer.ReadyForCollectionActivity" android:exported="false" />
+        <activity android:name=".customer.RepairHistoryActivity" android:exported="false" />
+        <activity android:name=".customer.RepairHistoryDetailActivity" android:exported="false" />
+        <activity android:name=".customer.GalleryActivity" android:exported="false" />
+
+        <!-- ============ BOOKING FLOW ============ -->
+        <activity android:name=".booking.BookStep1CategoryActivity" android:exported="false" />
+        <activity android:name=".booking.BookStep2DeviceActivity" android:exported="false" />
+        <activity android:name=".booking.BookStep3ServiceActivity" android:exported="false" />
+        <activity android:name=".booking.BookStep4ProblemActivity" android:exported="false" />
+        <activity android:name=".booking.BookStep5ImagesActivity" android:exported="false" />
+        <activity android:name=".booking.BookStep6BranchActivity" android:exported="false" />
+        <activity android:name=".booking.BookStep7DateTimeActivity" android:exported="false" />
+        <activity android:name=".booking.BookStep8ConfirmActivity" android:exported="false" />
+
+        <!-- ============ PAYMENT ============ -->
+        <activity android:name=".payment.PaymentSummaryActivity" android:exported="false" />
+        <activity android:name=".payment.PaymentMethodActivity" android:exported="false" />
+        <activity android:name=".payment.PaymentSuccessActivity" android:exported="false" />
+        <activity android:name=".payment.PaymentHistoryActivity" android:exported="false" />
+
+        <!-- ============ NOTIFICATIONS / SETTINGS ============ -->
+        <activity android:name=".settings.NotificationsActivity" android:exported="false" />
+        <activity android:name=".settings.EditProfileActivity" android:exported="false" />
+        <activity android:name=".settings.SettingsActivity" android:exported="false" />
+
+        <!-- ============ ADMIN ============ -->
+        <activity android:name=".admin.AdminLoginActivity" android:exported="false" />
+        <activity android:name=".admin.AdminDashboardActivity" android:exported="false" />
+        <activity android:name=".admin.AdminAppointmentsActivity" android:exported="false" />
+        <activity android:name=".admin.AdminAppointmentDetailsActivity" android:exported="false" />
+        <activity android:name=".admin.AdminTechniciansActivity" android:exported="false" />
+        <activity android:name=".admin.AdminSparePartsActivity" android:exported="false" />
+        <activity android:name=".admin.AdminReportsActivity" android:exported="false" />
+
+        <!-- ============ FILE PROVIDER (camera capture) ============ -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+    </application>
+
+</manifest>
