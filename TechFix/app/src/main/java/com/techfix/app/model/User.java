@@ -1,6 +1,5 @@
 package com.techfix.app.model;
 
-/** A registered customer / user account. */
 public class User {
     public int id;
     public String fullName;
