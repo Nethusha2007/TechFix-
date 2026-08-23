@@ -19,11 +19,6 @@ import com.techfix.app.model.Payment;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Lists the signed-in customer's notifications, built live from their own repairs and
- * payments (no sample data). A brand-new account starts with an empty list and gains
- * entries as the customer books repairs and makes payments.
- */
 public class NotificationsActivity extends AppCompatActivity {
 
     private final List<NotificationItem> items = new ArrayList<>();
@@ -58,19 +53,16 @@ public class NotificationsActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        // Rebuild so a repair booked or a payment made elsewhere shows up right away.
         loadNotifications();
     }
 
-    /** Rebuilds the feed from the current user's appointments and payments. */
     private void loadNotifications() {
         items.clear();
 
         int userId = session.getUserId();
         if (userId > 0) {
             int seq = 1;
-
-            // Most recent activity first (both queries already return newest-first).
+            
             for (Appointment a : db.getAppointmentsByUser(userId)) {
                 items.add(buildForAppointment(seq++, a));
             }
@@ -88,8 +80,7 @@ public class NotificationsActivity extends AppCompatActivity {
         findViewById(R.id.emptyState).setVisibility(hasItems ? View.GONE : View.VISIBLE);
         adapter.notifyDataSetChanged();
     }
-
-    /** Turns one appointment into a status-appropriate notification. */
+    
     private NotificationItem buildForAppointment(int id, Appointment a) {
         String ref = (a.refNo == null) ? "" : a.refNo;
         String device = (a.device == null) ? "your device" : a.device;
