@@ -6,16 +6,9 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
-
 import androidx.core.content.ContextCompat;
-
 import com.techfix.app.R;
 
-/**
- * A lightweight donut / pie chart drawn entirely with Canvas — no external chart
- * library — so it always matches the app's own theme. Feed it parallel value and
- * colour arrays and, optionally, a label to show in the centre hole.
- */
 public class PieChartView extends View {
 
     private float[] values = {1f};
@@ -48,8 +41,7 @@ public class PieChartView extends View {
         labelPaint.setColor(ContextCompat.getColor(getContext(), R.color.textSecondary));
         labelPaint.setTextAlign(Paint.Align.CENTER);
     }
-
-    /** Parallel arrays: value[i] is drawn in color[i]. Ignored if values is empty. */
+ 
     public void setData(float[] values, int[] colors) {
         if (values != null && values.length > 0 && colors != null && colors.length > 0) {
             this.values = values;
@@ -58,7 +50,6 @@ public class PieChartView extends View {
         invalidate();
     }
 
-    /** Big number + small caption shown inside the donut hole. */
     public void setCenterText(String value, String label) {
         this.centerValue = value == null ? "" : value;
         this.centerLabel = label == null ? "" : label;
@@ -89,7 +80,6 @@ public class PieChartView extends View {
             start += sweep;
         }
 
-        // Punch a hole so it reads as a donut, then print the centre total.
         float holeRadius = radius * 0.60f;
         canvas.drawCircle(cx, cy, holeRadius, holePaint);
 
