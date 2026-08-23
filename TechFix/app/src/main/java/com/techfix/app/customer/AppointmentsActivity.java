@@ -19,7 +19,6 @@ import com.techfix.app.util.BottomNavHelper;
 
 import java.util.List;
 
-/** Customer appointments list with All / Active / Completed filters. */
 public class AppointmentsActivity extends AppCompatActivity {
 
     private DBHelper db;
