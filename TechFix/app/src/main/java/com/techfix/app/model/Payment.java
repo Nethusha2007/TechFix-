@@ -1,13 +1,12 @@
 package com.techfix.app.model;
 
-/** A payment record. */
 public class Payment {
     public int id;
-    public String refNo;    // e.g. "#AAP-10023"
-    public String service;  // e.g. "Software Repair"
-    public String amount;   // e.g. "LKR 3,500.00"
-    public String date;     // e.g. "15 May 2026"
-    public String status;   // "Paid" | "Pending"
+    public String refNo;    
+    public String service;  
+    public String amount;   
+    public String date;     
+    public String status;   
 
     public Payment(int id, String refNo, String service, String amount, String date, String status) {
         this.id = id;
