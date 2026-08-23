@@ -22,7 +22,6 @@ import com.techfix.app.data.DBHelper;
 import com.techfix.app.data.Session;
 import com.techfix.app.model.User;
 
-/** Customer login with basic validation and SQLite-backed authentication. */
 public class LoginActivity extends AppCompatActivity {
 
     private EditText etEmail, etPassword;
@@ -43,7 +42,6 @@ public class LoginActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         btnTogglePassword = findViewById(R.id.btnTogglePassword);
 
-        // Prefill demo credentials so the coursework demo is one tap away.
         etEmail.setText(DBHelper.DEMO_EMAIL);
         etPassword.setText(DBHelper.DEMO_PASSWORD);
 
