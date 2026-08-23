@@ -18,7 +18,6 @@ import com.techfix.app.customer.HomeActivity;
 import com.techfix.app.data.DBHelper;
 import com.techfix.app.data.Session;
 
-/** New customer registration with field validation and SQLite persistence. */
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText etName, etEmail, etPhone, etPassword, etConfirmPassword;
