@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <!-- ========================================================= -->
+    <!-- MAIN SCROLL CONTENT                                       -->
+    <!-- ========================================================= -->
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- ================================================= -->
+            <!-- NAVY HEADER                                        -->
+            <!-- ================================================= -->
+
+
+            <!-- ================================================= -->
+            <!-- SPACE AFTER HEADER                                -->
+            <!-- ================================================= -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_gradient_navy"
+                android:fitsSystemWindows="true"
+                android:orientation="vertical"
+                android:paddingStart="20dp"
+                android:paddingTop="25dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="28dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <!-- Shield -->
+
+                    <FrameLayout
+                        android:layout_width="46dp"
+                        android:layout_height="46dp"
+                        android:background="@drawable/bg_circle_white_translucent">
+
+                        <ImageView
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_shield"
+                            app:tint="@color/white" />
+
+                    </FrameLayout>
+
+                    <!-- Header text -->
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Admin Dashboard"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvAdminName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:text="Welcome back, Admin"
+                            android:textColor="#B9C4D8"
+                            android:textSize="13sp" />
+
+                    </LinearLayout>
+
+                    <!-- Logout -->
+
+                    <ImageView
+                        android:id="@+id/btnLogout"
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="Logout"
+                        android:padding="9dp"
+                        android:src="@drawable/ic_logout"
+                        app:tint="@color/white" />
+
+                </LinearLayout>
+
+                <!-- Header subtitle -->
+
+                <TextView
+                    android:layout_width="311dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="26dp"
+                    android:text="Manage your repair service at a glance"
+                    android:textColor="#D5DEED"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
+
+
+            <!-- ================================================= -->
+            <!-- STAT CARDS                                         -->
+            <!-- ================================================= -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="vertical">
+
+                <!-- ================= ROW 1 ================= -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <include
+                        android:id="@+id/statTotal"
+                        layout="@layout/item_stat_card"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="6dp"
+                        android:layout_weight="1" />
+
+                    <include
+                        android:id="@+id/statProgress"
+                        layout="@layout/item_stat_card"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
+
+
+                <!-- ================= ROW 2 ================= -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+
+                    <include
+                        android:id="@+id/statPending"
+                        layout="@layout/item_stat_card"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="6dp"
+                        android:layout_weight="1" />
+
+                    <include
+                        android:id="@+id/statRevenue"
+                        layout="@layout/item_stat_card"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <!-- ================================================= -->
+            <!-- REVENUE SECTION                                   -->
+            <!-- ================================================= -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextSectionLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Repairs by Status"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text="Live breakdown of all repairs"
+                        android:textColor="@color/textSecondary"
+                        android:textSize="11sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_circle_white_translucent"
+                    android:paddingStart="10dp"
+                    android:paddingTop="6dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="6dp"
+                    android:text="LIVE"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="9sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+            <!-- ================================================= -->
+            <!-- REVENUE CARD                                      -->
+            <!-- ================================================= -->
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                app:cardBackgroundColor="@color/card"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="18dp">
+
+                    <!-- Revenue total -->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvChartTotal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="LKR 0"
+                                android:textColor="@color/textPrimary"
+                                android:textSize="23sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:text="Total repairs"
+                                android:textColor="@color/textSecondary"
+                                android:textSize="11sp" />
+
+                        </LinearLayout>
+
+                        <FrameLayout
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:background="@drawable/bg_circle_white_translucent">
+
+                            <ImageView
+                                android:layout_width="21dp"
+                                android:layout_height="21dp"
+                                android:layout_gravity="center"
+                                android:contentDescription="@null"
+                                android:src="@drawable/ic_appointments"
+                                app:tint="@color/colorPrimary" />
+
+                        </FrameLayout>
+
+                    </LinearLayout>
+
+
+                    <!-- ================================================= -->
+                    <!-- PIE CHART CONTAINER                              -->
+                    <!-- ================================================= -->
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="190dp"
+                        android:layout_marginTop="10dp">
+
+                        <LinearLayout
+                            android:id="@+id/chartContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="horizontal" />
+
+                    </FrameLayout>
+
+
+                    <!-- Chart description -->
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Distribution by status"
+                        android:textColor="@color/textSecondary"
+                        android:textSize="11sp" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <!-- ================================================= -->
+            <!-- RECENT APPOINTMENTS                               -->
+            <!-- ================================================= -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextSectionLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Recent Appointments"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text="Latest service requests"
+                        android:textColor="@color/textSecondary"
+                        android:textSize="11sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/btnViewAll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:paddingStart="8dp"
+                    android:paddingTop="6dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="6dp"
+                    android:text="View All"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+            <!-- ================================================= -->
+            <!-- RECENT APPOINTMENTS LIST                          -->
+            <!-- ================================================= -->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvRecent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:clipToPadding="false"
+                android:nestedScrollingEnabled="false"
+                android:overScrollMode="never"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+    <!-- ========================================================= -->
+    <!-- BOTTOM NAVIGATION                                         -->
+    <!-- ========================================================= -->
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/card"
+        app:elevation="10dp"
+        app:itemIconTint="@color/bottom_nav_color"
+        app:itemTextColor="@color/bottom_nav_color"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/menu_bottom_admin" />
+
+</LinearLayout>
