@@ -3,7 +3,6 @@ package com.techfix.app.data;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-/** Tiny SharedPreferences wrapper for the logged-in user's session. */
 public class Session {
     private static final String PREFS = "techfix_session";
     private static final String KEY_LOGGED_IN = "logged_in";
