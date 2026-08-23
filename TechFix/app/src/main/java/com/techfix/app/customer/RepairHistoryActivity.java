@@ -15,7 +15,6 @@ import com.techfix.app.model.Appointment;
 
 import java.util.List;
 
-/** Lists the customer's completed (historical) repairs. */
 public class RepairHistoryActivity extends AppCompatActivity {
 
     private DBHelper db;
