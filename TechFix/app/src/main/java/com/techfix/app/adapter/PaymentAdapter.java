@@ -14,7 +14,6 @@ import com.techfix.app.util.StatusUtil;
 
 import java.util.List;
 
-/** Binds payment history rows. */
 public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.VH> {
 
     private final List<Payment> items;
