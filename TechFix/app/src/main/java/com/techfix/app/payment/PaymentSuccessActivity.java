@@ -12,11 +12,7 @@ import com.techfix.app.customer.AppointmentsActivity;
 import com.techfix.app.customer.HomeActivity;
 import com.techfix.app.customer.RepairDetailsActivity;
 
-/**
- * Shared success screen for both a completed booking and a completed payment.
- * The calling activity supplies the copy and a {@code primary_action} that decides
- * where the primary button goes.
- */
+
 public class PaymentSuccessActivity extends AppCompatActivity {
 
     private int appointmentId = -1;
@@ -99,7 +95,6 @@ public class PaymentSuccessActivity extends AppCompatActivity {
         launch(new Intent(this, HomeActivity.class));
     }
 
-    /** Starts {@code target} as the root of a fresh task so the flow can't be re-entered via Back. */
     private void launch(Intent target) {
         target.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(target);
