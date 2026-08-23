@@ -20,7 +20,6 @@ import com.techfix.app.util.MapUtil;
 
 import java.util.List;
 
-/** Lists all TechFix branches with call / directions actions and GPS "nearest branch". */
 public class BranchesActivity extends AppCompatActivity {
 
     private static final int REQ_LOCATION = 4101;
@@ -38,12 +37,10 @@ public class BranchesActivity extends AppCompatActivity {
         rv = findViewById(R.id.rvBranches);
         rv.setLayoutManager(new LinearLayoutManager(this));
 
-        // Show the branches immediately; upgrade to nearest-first once we have a location.
         showBranches(SampleData.branches());
         requestNearest();
     }
 
-    /** Requests location permission (if needed) then re-orders branches by distance. */
     private void requestNearest() {
         if (!MapUtil.hasLocationPermission(this)) {
             ActivityCompat.requestPermissions(this, new String[]{
@@ -90,7 +87,6 @@ public class BranchesActivity extends AppCompatActivity {
             if (granted) {
                 applyNearest();
             }
-            // If denied, we simply keep the default (static) branch list already shown.
         }
     }
 
