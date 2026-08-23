@@ -13,7 +13,6 @@ import com.techfix.app.data.DBHelper;
 import com.techfix.app.model.Appointment;
 import com.techfix.app.util.Money;
 
-/** Shows the cost breakdown for an appointment before choosing a payment method. */
 public class PaymentSummaryActivity extends AppCompatActivity {
 
     private static final long DIAGNOSTIC_FEE = 500;
