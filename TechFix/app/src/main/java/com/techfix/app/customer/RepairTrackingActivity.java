@@ -20,7 +20,6 @@ import com.techfix.app.util.StatusUtil;
 
 import java.util.List;
 
-/** Shows the live 8-step repair-tracking timeline for one appointment. */
 public class RepairTrackingActivity extends AppCompatActivity {
 
     private DBHelper db;
