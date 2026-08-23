@@ -16,20 +16,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
-/**
- * Map / GPS helpers: opening the device maps app with real coordinates,
- * reading the last known location, and ordering branches by distance.
- */
+
 public final class MapUtil {
 
     private MapUtil() {
     }
 
-    /**
-     * Opens a maps app pinned at ({@code lat},{@code lng}). When coordinates are unknown
-     * (both 0) it falls back to a text query, and if no maps app is installed it opens
-     * Google Maps in the browser.
-     */
     public static void openDirections(Context ctx, double lat, double lng, String label) {
         String safeLabel = (label == null || label.trim().isEmpty()) ? "TechFix" : label;
         Uri uri;
@@ -44,7 +36,7 @@ public final class MapUtil {
             ctx.startActivity(map);
             return;
         }
-        // Fallback: open Google Maps on the web.
+       
         Uri web = (lat != 0 || lng != 0)
                 ? Uri.parse("https://www.google.com/maps/search/?api=1&query=" + lat + "," + lng)
                 : Uri.parse("https://www.google.com/maps/search/?api=1&query=" + Uri.encode(safeLabel));
@@ -59,10 +51,6 @@ public final class MapUtil {
                 == PackageManager.PERMISSION_GRANTED;
     }
 
-    /**
-     * Returns the best last-known device location, or {@code null} if unavailable
-     * (no permission, no provider, or no cached fix). Never throws.
-     */
     public static Location lastKnownLocation(Context ctx) {
         if (!hasLocationPermission(ctx)) return null;
         try {
@@ -82,11 +70,7 @@ public final class MapUtil {
         }
     }
 
-    /**
-     * Rewrites each branch's {@code distance} label from its real distance to
-     * ({@code lat},{@code lng}) and sorts the list nearest-first. Branches without
-     * coordinates are left unchanged and pushed to the end.
-     */
+
     public static void sortByDistance(List<Branch> branches, double lat, double lng) {
         if (branches == null) return;
         for (Branch b : branches) {
@@ -102,7 +86,6 @@ public final class MapUtil {
         return r[0];
     }
 
-    /** Branches without coordinates sort last. */
     private static float rank(double lat, double lng, Branch b) {
         if (b.lat == 0 && b.lng == 0) return Float.MAX_VALUE;
         return meters(lat, lng, b);
