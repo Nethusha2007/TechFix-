@@ -12,7 +12,6 @@ import com.techfix.app.admin.AdminDashboardActivity;
 import com.techfix.app.customer.HomeActivity;
 import com.techfix.app.data.Session;
 
-/** Branded splash screen. Routes to the correct start screen after a short delay. */
 public class SplashActivity extends AppCompatActivity {
 
     private static final long SPLASH_DELAY_MS = 1800L;
