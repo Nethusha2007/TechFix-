@@ -15,7 +15,6 @@ import com.techfix.app.util.StatusUtil;
 
 import java.util.List;
 
-/** Binds appointment cards. Picks a device icon from the device name. */
 public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.VH> {
 
     private final List<Appointment> items;
